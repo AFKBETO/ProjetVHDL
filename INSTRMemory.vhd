@@ -1,37 +1,7 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 06.11.2021 19:13:50
--- Design Name: 
--- Module Name: INSTRMemory - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity INSTRMemory is
     Port ( clk : in STD_LOGIC;
@@ -49,23 +19,6 @@ architecture Behavioral of INSTRMemory is
     SIGNAL INSTR_memory : data_memory;
     
 begin
-
---    MyReadWriteProc : process (clk, INSTR_CE, R1W0, reset)
---    begin
---        if (reset = '1') then
---            for i in 0 to 127 loop
---                --INSTR_memory(i) <= "0000000000";
---                INSTR_memory(i) <= INSTR_memory(i);
---            end loop;
---        elsif falling_edge(clk) and INSTR_CE = '1' then
---            if (R1W0 = '1') then
---                INSTR_out <= INSTR_memory(to_integer(unsigned(INSTR_addr)));
---            else
---                INSTR_memory(to_integer(unsigned(INSTR_addr))) <= INSTR_in;
---                INSTR_out <= INSTR_in;
---            end if;
---        end if;  
---    end process;
 
     INSTR_out <= INSTR_memory(to_integer(unsigned(INSTR_addr))) when falling_edge(clk) and INSTR_CE = '1';
 
@@ -139,9 +92,9 @@ begin
         
     -- Default Value - (A0.B1 + A1.B0)
     INSTR_memory(64) <= "0000000000"; --| no op             | A -> Buf A    | 0     | 
-    INSTR_memory(65) <= "1000011100"; --| déc droite A      | B -> Buf B    | 0     |
+    INSTR_memory(65) <= "1000011100"; --| dï¿½c droite A      | B -> Buf B    | 0     |
     INSTR_memory(66) <= "0101010100"; --| A1 and B0         | S -> Buf A    | 0     |
-    INSTR_memory(67) <= "1010111000"; --| déc droite B      | S -> Mem 1    | 0     |
+    INSTR_memory(67) <= "1010111000"; --| dï¿½c droite B      | S -> Mem 1    | 0     |
     INSTR_memory(68) <= "0000110000"; --| no op             | S -> Buf B    | 0     |
     INSTR_memory(69) <= "0101000000"; --| A0 and B1         | A -> Buf A    | 0     |
     INSTR_memory(70) <= "0000110000"; --| no op             | S -> Buf B    | 0     |

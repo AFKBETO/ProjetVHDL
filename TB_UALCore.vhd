@@ -1,30 +1,9 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 06.11.2021 16:55:32
--- Design Name: 
--- Module Name: TB_UALCore - TB_UALCore_Arch
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_SIGNED.ALL;
 
 entity TB_UALCore is
---  Port ( );
+
 end TB_UALCore;
 
 architecture TB_UALCore_Arch of TB_UALCore is
@@ -43,8 +22,7 @@ architecture TB_UALCore_Arch of TB_UALCore is
     signal My_SR_IN_R, My_SR_IN_L, My_SR_OUT_R, My_SR_OUT_L : std_logic;
     signal My_S : std_logic_vector(7 downto 0); 
 
-    --Compteur pour la simulation
-    --signal my_cpt_sim : std_logic_vector(14 downto 0) := (others => '0'); -- Initialisation du compteur à 0
+    -- Initialisation du compteur Ã  0
     signal my_cpt_sim : std_logic_vector(14 downto 0) := "011110000000000";
 
 begin

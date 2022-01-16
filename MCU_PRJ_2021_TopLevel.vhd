@@ -1,36 +1,7 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 07.11.2021 11:19:51
--- Design Name: 
--- Module Name: MCU_PRJ_2021_TopLevel - MCU_PRJ_2021_TopLevel_Arch
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity MCU_PRJ_2021_TopLevel is
     Port (
@@ -234,7 +205,7 @@ begin
            CE_Mem_2 => My_CE_Mem_2            
        );
 
---Gestion des valeurs par défaut :
+--Gestion des valeurs par dÃ©faut :
     My_Buf_SR_IN_L_in <= '0';
     My_Buf_SR_IN_R_in <= '0';
     

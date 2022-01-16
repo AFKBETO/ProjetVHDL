@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity MEMSELROUTE is
+entity UALSELROUTE is
     Port ( 
             SEL_ROUTE : in STD_LOGIC_VECTOR (3 downto 0);
             S : in STD_LOGIC_VECTOR (7 downto 0);
@@ -20,9 +20,9 @@ entity MEMSELROUTE is
             CE_Mem_1 : out STD_LOGIC;
             CE_Mem_2 : out STD_LOGIC            
     );
-end MEMSELROUTE;
+end UALSELROUTE;
 
-architecture MEMSELROUTE_Arch of MEMSELROUTE is
+architecture UALSELROUTE_Arch of UALSELROUTE is
 
 begin
 
@@ -99,7 +99,7 @@ begin
                 Mem_1_In <= (others => '0');
                 Mem_2_In <= (others => '0');
             
-            when "0111" => -- Stockage de l'entr�e B_IN dans Buffer_B
+            when "0111" => -- Stockage de l'entrée B_IN dans Buffer_B
                 CE_Buf_A <= '0';
                 CE_Buf_B <= '1';
                 CE_Mem_1 <= '0';
@@ -191,4 +191,4 @@ begin
         end case;
     end process;
 
-end MEMSELROUTE_Arch;
+end UALSELROUTE_Arch;

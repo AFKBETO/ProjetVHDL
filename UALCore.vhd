@@ -1,27 +1,5 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 06.11.2021 16:15:12
--- Design Name: 
--- Module Name: UALCore - UALCore_Arch
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
---use IEEE.NUMERIC_STD.ALL;
 use IEEE.STD_LOGIC_SIGNED.ALL;
 
 entity UALCore is
@@ -68,30 +46,30 @@ begin
         when "0111" => -- S = A xor B | SR_OUT_L = 0 et SR_OUT_R = 0
             S(7 downto 4) <= (others => '0');
             S(3 downto 0) <= A xor B; SR_OUT_L <= '0'; SR_OUT_R <= '0';
-        when "1000" => -- S = Déc. droite A (avec SR_IN_L) | SR_IN_L pour le bit entrant et SR_OUT_R pour le bit sortant
+        when "1000" => -- S = DÃ©caler Ã  droite A sur 4 bits (avec SR_IN_L) | SR_IN_L pour le bit entrant et SR_OUT_R pour le bit sortant
             S(7 downto 4) <= (others => '0');
             S(3) <= SR_IN_L; S(2 downto 0) <= A(3 downto 1); 
             SR_OUT_L <= '0'; SR_OUT_R <= A(0);
-        when "1001" => -- S = Déc. gauche A (avec SR_IN_R) | SR_IN_R pour le bit entrant et SR_OUT_L pour le bit sortant
+        when "1001" => -- S = DÃ©caler Ã  gauche A sur 4 bits (avec SR_IN_R) | SR_IN_R pour le bit entrant et SR_OUT_L pour le bit sortant
             S(7 downto 4) <= (others => '0');
             S(0) <= SR_IN_R; S(3 downto 1) <= A(2 downto 0); 
             SR_OUT_L <= A(3); SR_OUT_R <= '0';
-        when "1010" => -- S = Déc. droite B (avec SR_IN_L) | SR_IN_L pour le bit entrant et SR_OUT_R pour le bit sortant
+        when "1010" => -- S = DÃ©caler Ã  droite B sur 4 bits (avec SR_IN_L) | SR_IN_L pour le bit entrant et SR_OUT_R pour le bit sortant
             S(7 downto 4) <= (others => '0');
             S(3) <= SR_IN_L; S(2 downto 0) <= B(3 downto 1); 
             SR_OUT_L <= '0'; SR_OUT_R <= B(0);
-        when "1011" => -- S = Déc. gauche B (avec SR_IN_R) | SR_IN_R pour le bit entrant et SR_OUT_L pour le bit sortant
+        when "1011" => -- S = DÃ©caler Ã  gauche B sur 4 bits (avec SR_IN_R) | SR_IN_R pour le bit entrant et SR_OUT_L pour le bit sortant
             S(7 downto 4) <= (others => '0');
             S(0) <= SR_IN_R; S(3 downto 1) <= B(2 downto 0); 
             SR_OUT_L <= B(3); SR_OUT_R <= '0';
-        when "1100" => -- S = A + B addition binaire avec SR_IN_R comme retenue d'entrée
+        when "1100" => -- S = A + B addition binaire avec SR_IN_R comme retenue d'entrÃ©e
             My_A_Var(3 downto 0) := A; My_B_Var(3 downto 0) := B;
             My_A_Var(7 downto 4) := (others => A(3)); My_B_Var(7 downto 4) := (others => B(3));
             My_S_Var := My_A_Var + My_B_Var;
             My_S_Var := My_S_Var + ("0000000" & SR_IN_R);
             S <= My_S_Var;
             SR_OUT_L <= '0'; SR_OUT_R <= '0';
-        when "1101" => -- S = A + B addition binaire sans retenue d'entrée
+        when "1101" => -- S = A + B addition binaire sans retenue d'entrÃ©e
             My_A_Var(3 downto 0) := A; My_B_Var(3 downto 0) := B;
             My_A_Var(7 downto 4) := (others => A(3)); My_B_Var(7 downto 4) := (others => B(3));
             My_S_Var := My_A_Var + My_B_Var;
