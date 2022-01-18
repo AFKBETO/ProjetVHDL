@@ -13,7 +13,7 @@ entity INSTRMemory is
            R1W0 : in STD_LOGIC);
 end INSTRMemory;
 
-architecture Behavioral of INSTRMemory is
+architecture INSTRMemory_Arch of INSTRMemory is
 
     Type data_memory IS ARRAY (0 to 127) of std_logic_vector (9 downto 0);
     SIGNAL INSTR_memory : data_memory;
@@ -157,4 +157,4 @@ begin
     INSTR_memory(126) <= "0001111110";
     INSTR_memory(127) <= "0001111111";
 
-end Behavioral;
+end INSTRMemory_Arch;

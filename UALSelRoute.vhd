@@ -29,7 +29,7 @@ begin
     MySelRouteProc : process (SEL_ROUTE, S, A, B, Buf_A_out, Buf_B_out, Mem_1_out, Mem_2_out)
     begin
         case SEL_ROUTE is
-            when "0000" => -- Stockage de l'entr�e A_IN dans Buffer_A
+            when "0000" => -- Stockage de l'entrée A_IN dans Buffer_A
                 CE_Buf_A <= '1';
                 CE_Buf_B <= '0';
                 CE_Mem_1 <= '0';
