@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity UALSELOUT is
+entity UALSelOut is
     Port ( 
         SEL_OUT : in STD_LOGIC_VECTOR (1 downto 0);
         S : in STD_LOGIC_VECTOR (7 downto 0);
@@ -9,9 +9,9 @@ entity UALSELOUT is
         Mem_2_out : in STD_LOGIC_VECTOR (7 downto 0);
         Res_out : out STD_LOGIC_VECTOR (7 downto 0)
     );
-end UALSELOUT;
+end UALSelOut;
 
-architecture UALSELOUT_Arch of UALSELOUT is
+architecture UALSelOut_Arch of UALSelOut is
 
 begin
 
@@ -29,4 +29,4 @@ begin
         end case;
     end process;
 
-end UALSELOUT_Arch;
+end UALSelOut_Arch;

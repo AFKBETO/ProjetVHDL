@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 
-entity MCU_PRJ_2021_TopLevel is
+entity TopLevel is
     Port (
         CLK100MHZ : in STD_LOGIC;
         sw : in STD_LOGIC_VECTOR(3 downto 0);
@@ -14,9 +14,9 @@ entity MCU_PRJ_2021_TopLevel is
         led2_r : out STD_LOGIC; led2_g : out STD_LOGIC; led2_b : out STD_LOGIC;                
         led3_r : out STD_LOGIC; led3_g : out STD_LOGIC; led3_b : out STD_LOGIC
     );
-end MCU_PRJ_2021_TopLevel;
+end TopLevel;
 
-architecture MCU_PRJ_2021_TopLevel_Arch of MCU_PRJ_2021_TopLevel is
+architecture TopLevel_Arch of TopLevel is
 
     component UALCore 
     Port ( A : in STD_LOGIC_VECTOR (3 downto 0);
@@ -83,7 +83,7 @@ architecture MCU_PRJ_2021_TopLevel_Arch of MCU_PRJ_2021_TopLevel is
     signal My_Buf_SR_IN_L_in, My_Buf_SR_IN_R_in, My_Buf_SR_IN_L_out, My_Buf_SR_IN_R_out : STD_LOGIC;
     signal My_CE_Buf_A, My_CE_Buf_B, My_CE_Mem_1, My_CE_Mem_2, My_CE_SR_IN_L, My_CE_SR_IN_R : STD_LOGIC;
     
-    component UALSELOUT
+    component UALSelOut
     Port ( 
         SEL_OUT : in STD_LOGIC_VECTOR (1 downto 0);
         S : in STD_LOGIC_VECTOR (7 downto 0);
@@ -95,7 +95,7 @@ architecture MCU_PRJ_2021_TopLevel_Arch of MCU_PRJ_2021_TopLevel is
     signal My_Res_out : STD_LOGIC_VECTOR (7 downto 0);
     signal My_SEL_OUT : STD_LOGIC_VECTOR (1 downto 0);
 
-    component UALSELROUTE
+    component UALSelRoute
     Port ( 
             SEL_ROUTE : in STD_LOGIC_VECTOR (3 downto 0);
             S : in STD_LOGIC_VECTOR (7 downto 0);
@@ -176,7 +176,7 @@ begin
               Buf_SR_IN_R_out => My_Buf_SR_IN_R_out 
         );
    
-       MyUALSELOUT : UALSELOUT
+       MyUALSelOut : UALSelOut
        Port Map ( 
            SEL_OUT => My_Sel_Out,
            S => My_S,
@@ -185,7 +185,7 @@ begin
            Res_out => My_Res_Out
        );
    
-       MyUALSELROUTE : UALSELROUTE
+       MyUALSelRoute : UALSelRoute
        Port Map ( 
            SEL_ROUTE => My_INSTR_out(5 downto 2),
            S => My_S,
@@ -284,4 +284,4 @@ begin
     end if;    
 end process;
 
-end MCU_PRJ_2021_TopLevel_Arch;
+end TopLevel_Arch;

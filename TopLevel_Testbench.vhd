@@ -2,13 +2,13 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 
-entity TopLevelSim is
+entity TopLevel_Testbench is
 
-end TopLevelSim;
+end TopLevel_Testbench;
 
-architecture TopLevelSim_Arch of TopLevelSim is
+architecture TopLevel_Testbench_Arch of TopLevel_Testbench is
 
-    component MCU_PRJ_2021_TopLevel 
+    component TopLevel 
     Port (
         CLK100MHZ : in STD_LOGIC;
         sw : in STD_LOGIC_VECTOR(3 downto 0);
@@ -35,24 +35,28 @@ architecture TopLevelSim_Arch of TopLevelSim is
     
 begin
 
-    MyCUT : MCU_PRJ_2021_TopLevel 
+    MyTopLevel : TopLevel 
     Port Map (
         CLK100MHZ => CLK100MHZ,
         sw => sw,
         btn => btn,
+        
         led => led,
+        
         led0_r => led0_r,
-        led0_g => led0_g,
-        led0_b => led0_b,
         led1_r => led1_r,
-        led1_g => led1_g,
-        led1_b => led1_b,
         led2_r => led2_r,
-        led2_g => led2_g,
-        led2_b => led2_b,
         led3_r => led3_r,
-        led3_g => led3_g,
-        led3_b => led3_b 
+
+        led0_b => led0_b,
+        led1_b => led1_b,
+        led2_b => led2_b,
+        led3_b => led3_b,
+
+        led0_g => led0_g,
+        led1_g => led1_g,
+        led2_g => led2_g,
+        led3_g => led3_g 
     );
     
     SR_OUT_L <= led2_b;
@@ -101,4 +105,4 @@ begin
     end process;
 
 
-end TopLevelSim_Arch;
+end TopLevel_Testbench_Arch;

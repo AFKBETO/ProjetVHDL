@@ -21,9 +21,13 @@ architecture INSTRMemory_Arch of INSTRMemory is
 begin
 
     INSTR_out <= INSTR_memory(to_integer(unsigned(INSTR_addr))) when falling_edge(clk) and INSTR_CE = '1';
+    -- INSTR_memory : 4 bits de SEL_FCT, 4 bits de SEL_ROUTE, 2 bits de SEL_OUT
+    -- SEL_FCT : Sélectionner l'opération - UALCore
+    -- SEL_ROUTE : Sélectionner quelle donnée à stocker dans quelle mémoire - UALSelRoute
+    -- SEL_OUT : Sélectionner la sortie - UALSelOut
 
-    -- Default Value - A mult. B
-    INSTR_memory(0) <= "0000000000"; --| no op             | A -> Buf A    | 0     |
+    -- Default Value - A mult. B       | opération         | mémorisation  | sortie|
+    INSTR_memory(0) <= "0000000000"; --| nop               | A -> Buf A    | 0     |
     INSTR_memory(1) <= "1111011100"; --| A * B             | B -> Buf B    | 0     |
     INSTR_memory(2) <= "0000111000"; --| no op             | S -> Mem 1    | 0     |
     INSTR_memory(3) <= "0000000001"; --| no op             | A -> Buf A    | Mem 1 |
@@ -56,8 +60,8 @@ begin
     INSTR_memory(30) <= "0000011110";
     INSTR_memory(31) <= "0000011111";
     
-    -- Default Value - (A add. B) xnor A
-    INSTR_memory(32) <= "0000000000"; --| no op             | A -> Buf A    | 0     |
+    -- Default Value - (A add. B) xnor A| opération         | mémorisation  | sortie|
+    INSTR_memory(32) <= "0000000000"; --| nop               | A -> Buf A    | 0     |
     INSTR_memory(33) <= "1101011100"; --| A add B           | B -> Buf B    | 0     |
     INSTR_memory(34) <= "0111110000"; --| A xor S           | S -> Buf B    | 0     |
     INSTR_memory(35) <= "0100110000"; --| not B (xnor)      | S -> Buf B    | 0     |
@@ -90,11 +94,11 @@ begin
     INSTR_memory(62) <= "0000111110";
     INSTR_memory(63) <= "0000111111";
         
-    -- Default Value - (A0.B1 + A1.B0)
-    INSTR_memory(64) <= "0000000000"; --| no op             | A -> Buf A    | 0     | 
-    INSTR_memory(65) <= "1000011100"; --| d�c droite A      | B -> Buf B    | 0     |
+    -- Default Value - (A0.B1 + A1.B0)  | opération         | mémorisation  | sortie|
+    INSTR_memory(64) <= "0000000000"; --| nop               | A -> Buf A    | 0     | 
+    INSTR_memory(65) <= "1000011100"; --| décaler droite A  | B -> Buf B    | 0     |
     INSTR_memory(66) <= "0101010100"; --| A1 and B0         | S -> Buf A    | 0     |
-    INSTR_memory(67) <= "1010111000"; --| d�c droite B      | S -> Mem 1    | 0     |
+    INSTR_memory(67) <= "1010111000"; --| décaler droite B  | S -> Mem 1    | 0     |
     INSTR_memory(68) <= "0000110000"; --| no op             | S -> Buf B    | 0     |
     INSTR_memory(69) <= "0101000000"; --| A0 and B1         | A -> Buf A    | 0     |
     INSTR_memory(70) <= "0000110000"; --| no op             | S -> Buf B    | 0     |

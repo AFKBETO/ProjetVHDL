@@ -27,7 +27,7 @@ architecture TB_UALCore_Arch of TB_UALCore is
 
 begin
 
-    MyComponentUnderTest : UALCore
+    MyUALCore : UALCore
     port map (
         A => My_A,
         B => My_B,
